@@ -12,4 +12,4 @@ __pycache__/
 results/
 
 # Redundant compressed backups of logs already stored as text.
-bots/archive/*.tar.gz
+bots/*.tar.gz

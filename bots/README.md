@@ -15,8 +15,8 @@
 <n>.py                 제출 코드 또는 제출 후보
 <n>_data.bin           선택 데이터 파일, 있을 때만 코드와 같은 번호로 보관
 <n>_nypc_log/          제출 직후 NYPC가 제공하는 8개 공식 봇 상대 로그
-<n>_user_log/          정형화한 중간평가/유저 상대 로그
-archive/               지난 세대 코드, 중요 로그, logs_backup_*.tar.gz 백업
+eval##_bot<n>_user_log/ 정형화한 중간평가/유저 상대 로그
+logs_backup_*.tar.gz   압축 백업, Git에는 올리지 않음
 ```
 
 ## NYPC Logs
@@ -25,15 +25,15 @@ archive/               지난 세대 코드, 중요 로그, logs_backup_*.tar.gz
 
 ## User Evaluation Logs
 
-`<n>_user_log/`는 중간평가 또는 유저 상대 결과다. 상대는 매 평가마다 달라질 수 있고, 상대 팀의 대표 제출 코드도 시간에 따라 바뀔 수 있다. 따라서 절대 점수보다 진영별 승패, 티어별 손실, 급사/WA, 성장 곡선을 본다.
+`eval##_bot<n>_user_log/`는 중간평가 또는 유저 상대 결과다. 상대는 매 평가마다 달라질 수 있고, 상대 팀의 대표 제출 코드도 시간에 따라 바뀔 수 있다. 따라서 절대 점수보다 진영별 승패, 티어별 손실, 급사/WA, 성장 곡선을 본다.
 
-최근 로그는 원본 파일명도 보존하되, 가능하면 `ranking.txt`, `manifest.tsv`, `matches/`처럼 재현 가능한 구조로 정리한다. `matches/`의 파일명은 가능한 한 `<대전ID>_<A|B>.txt`를 사용한다. `A`는 우리가 LEFT였다는 뜻이다.
+각 유저 로그 폴더는 `summary.md`, `ranking_raw.txt`, `<대전ID>_<A|B>.txt` 파일을 둔다. `A`는 우리가 LEFT였다는 뜻이고, `B`는 우리가 RIGHT였다는 뜻이다.
 
-현재 루트에 보관된 유저 로그는 `145_user_log/`와 `183_user_log/`이다. 이전 정형화 로그는 `archive/` 아래 보존한다.
+현재 루트에 보관된 유저 로그는 `eval14_botpre43_user_log/`, `eval15_bot43_user_log/`, `eval17_bot46_user_log/`부터 `eval30_bot183_user_log/`까지다. `eval16`은 원자료가 없고, `eval21_bot47_user_log/`는 랭킹 요약만 남아 있다.
 
 ## Storage Rules
 
 - 로그 폴더는 읽기 전용 원자료로 취급한다.
 - 정리 스크립트는 로그 폴더를 순회 삭제하지 않는다.
-- 새 공식/유저 로그를 추가한 뒤에는 `cd bots && tar czf archive/logs_backup_<날짜>.tar.gz *_nypc_log *_user_log archive/user_logs`로 백업을 갱신한다.
+- 새 공식/유저 로그를 추가한 뒤에는 `cd bots && tar czf logs_backup_<날짜>.tar.gz *_nypc_log eval*_bot*_user_log`로 백업을 갱신한다.
 - 로컬 실험 출력은 `../results/<name>/`에 둔다. 결론을 문서화하기 전에는 삭제하지 않는다.

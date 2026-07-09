@@ -66,8 +66,8 @@
 ## 이전 작업 메모 (2026-07-08 16:08 KST, eval29 반영)
 
 - **새 유저 로그 정형화:** `bots/145_user_log`의 중간평가 #29 로그를
-  `bots/archive/user_logs/eval29_bot145_20260708_1500/`로 보존했다.
-  `ranking.txt`, `manifest.tsv`, `matches/` 20개 로그가 있으며 원본은
+  현재는 `bots/eval29_bot145_user_log/` 표준 구조로 보존한다.
+  `summary.md`, `ranking_raw.txt`, match log 20개가 있으며 원본은
   건드리지 않았다. 사이트 결과는 Tier 9, rating 1920, 469/914위,
   `9W/10L/1D`.
 - **145 재현:** eval29 전체를 현재 `bots/145.py`로 고정 재생하면 사이트
@@ -284,8 +284,9 @@
    뒤에 넣는다. 샘플 성적을 바이트 단위로 보존하면서 랭킹 게임만 진화시키는
    구조. 현재 게이트 뒤: 올인 가드, chip 기본, T100 거북이->parity 분류,
    hq_race 예외, 호위 확장, 대칭 타이브레이크.
-3. **유저 중간평가 루프 (6시간 주기)**: 로그를 `bots/<n>_user_log/`에 저장
-   (순위 페이지 = '무제.txt'도 함께 -- 레이팅/티어의 유일한 소스). 분석
+3. **유저 중간평가 루프 (6시간 주기)**: 로그를
+   `bots/eval##_bot<n>_user_log/`에 저장한다. `ranking_raw.txt`는
+   레이팅/티어의 유일한 소스다. 분석
    순서: ① 진영별 승패 (RIGHT 편향 추적) ② 티어별 승패 (T5 업셋 패배가
    최대 레이팅 손실원) ③ 패배 게임 성장 커브 비교 (T50/100/150 시점
    기지/HQ/훈련) ④ 크래시/급사 스캔.
@@ -354,8 +355,8 @@ python3 tools/evaluate.py --bot "$CANDIDATE" \
 
 ## 로그 정책 (v3.2, 경량화 -- 마감 이틀 전 기준)
 
-전 로그는 `bots/archive/logs_backup_*.tar.gz`(1MB)에 백업됨. 원본은 운영
-필수분만 유지: 게이트용 `archive/29_nypc_log/4.txt`·`30_nypc_log/7.txt`·
+전 로그는 `bots/logs_backup_*.tar.gz`에 백업됨. 원본은 운영
+필수분만 유지: 게이트용 `29_nypc_log/4.txt`·`30_nypc_log/7.txt`·
 `45_nypc_log/`. 새 평가 로그는 분석 후 백업 갱신하면 원본 삭제 가능.
 
 ## (구) 로그 보호 규칙 (v3.1, 유실 사고 후 신설)
@@ -366,10 +367,10 @@ python3 tools/evaluate.py --bot "$CANDIDATE" \
 1. **정리 스크립트는 화이트리스트 방식만**: 삭제/이동할 파일명을 명시적으로
    나열한다. 글롭/디렉터리 순회로 지우지 않는다.
 2. `*_nypc_log/`, `*_user_log/`는 어떤 스크립트도 건드리지 않는다 (읽기 전용).
-3. **주기 백업**: 로그 폴더 전체를 `bots/archive/logs_backup_<날짜>.tar.gz`로
+3. **주기 백업**: 로그 폴더 전체를 `bots/logs_backup_<날짜>.tar.gz`로
    압축 보관 (평가 데이터 추가 시마다). 현재: logs_backup_0706_0021.tar.gz.
-4. 유저 로그 저장 규약: 폴더 `bots/<봇번호>_user_log<차수>/`, 파일명
-   `<대전ID>_<A|B>.txt` (A=우리 LEFT), 순위 페이지 '무제.txt' 필수 포함.
+4. 유저 로그 저장 규약: 폴더 `bots/eval##_bot<봇번호>_user_log/`, 파일명
+   `<대전ID>_<A|B>.txt` (A=우리 LEFT), `summary.md`와 `ranking_raw.txt` 필수 포함.
 
 ## 검증 관행 (v3.1): 제출 전 이중 감사
 
@@ -387,7 +388,7 @@ python3 tools/evaluate.py --bot "$CANDIDATE" \
 bots/<best>.py          # 서버 최고 성적 봇 = 대표 답안 (삭제 금지)
 bots/<candidate>.py     # 현재 후보 (제출 중 + 준비 중, 1~2개)
 bots/<n>_nypc_log/      # 서버 로그 = 유일한 실측 데이터, 전부 보존
-bots/archive/           # 지난 제출 코드/로그 이동 (삭제하지 않는다)
+eval##_bot*_user_log/   # 유저 평가 로그와 표준 summary
 results/                # 일회용. 현재 사이클 것만 남기고 주기적으로 비운다
 opponents/proxy.py      # 참고용 유지 (스모크/실험에 씀, 게이트 아님)
 ```
@@ -700,7 +701,7 @@ Diagnosis from logs:
 
 `29.py` is a fresh macro-first bot grown from the proxy engine (NOT from the
 26-28 heuristic lineage). It needs no `data.bin`. Stale unsubmitted candidates
-(`26.py`, `27.py`, `28.py`) and all pre-24 history live in `bots/archive/`.
+(`26.py`, `27.py`, `28.py`) and all pre-24 history now live directly under `bots/`.
 
 29.py gate results (2026-07-02, per docs/workflow.md):
 

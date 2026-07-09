@@ -20,7 +20,7 @@
 
 ## Project Structure & Module Organization
 
-`bots/` contains numbered, self-contained Python bot submissions. Keep server and user logs in `bots/<n>_nypc_log/` and `bots/<n>_user_log*/` as source data. `tools/` holds evaluation, replay, and log-analysis scripts; `run_many.py` forwards to `tools/evaluate.py`. `nation-providing/` contains the official `testing-tool.py`, sample bot, and config. `opponents/proxy.py` provides local proxy opponents. `results/` is generated output from evaluations. `docs/`, `game-rule.md`, `strategy-plan.md`, and `CLAUDE.md` document rules, workflow, and current strategy.
+`bots/` contains numbered, self-contained Python bot submissions. Keep server and user logs in `bots/<n>_nypc_log/` and `bots/eval##_bot*_user_log/` as source data. `tools/` holds evaluation, replay, and log-analysis scripts; `run_many.py` forwards to `tools/evaluate.py`. `nation-providing/` contains the official `testing-tool.py`, sample bot, and config. `opponents/proxy.py` provides local proxy opponents. `results/` is generated output from evaluations. `docs/`, `game-rule.md`, `strategy-plan.md`, and `CLAUDE.md` document rules, workflow, and current strategy.
 
 ## Build, Test, and Development Commands
 
@@ -53,7 +53,7 @@ This workspace root has no Git history, so no project commit convention is detec
 
 ## Data Safety
 
-Do not delete or rewrite `*_nypc_log/`, `*_user_log*/`, or `bots/archive/` data. Treat `results/` as disposable only after conclusions are recorded in `strategy-plan.md`.
+Do not delete or rewrite `*_nypc_log/` or `eval*_bot*_user_log/` data. Treat `results/` as disposable only after conclusions are recorded in `strategy-plan.md`.
 
 ## Source: former `CLAUDE.md`
 
@@ -653,7 +653,7 @@ anti-greed게이트v2·멀티목표견제·hq_race패딩면제 중 어느 것도
    HQ서킷브레이커 — 6개 추가분 중 유일하게 실전 발동이 직접 확인된
    항목, 상세는 "중대 발견" 절 참조) 성적표를 최우선 확인.
 4. 새 평가 데이터 저장 시 백업 갱신:
-   `cd bots && tar czf archive/logs_backup_<날짜>.tar.gz *_nypc_log *_user_log`
+   `cd bots && tar czf logs_backup_<날짜>.tar.gz *_nypc_log eval*_bot*_user_log`
 
 ## 절대 규칙 (docs/workflow.md v3.1이 원본)
 
@@ -665,7 +665,7 @@ anti-greed게이트v2·멀티목표견제·hq_race패딩면제 중 어느 것도
   확인됐기 때문. **제출 무제한 + 즉시 로그 반환**이라는 대회 특성상,
   "알려진 8맵도 서버에 직접 실측 가능"이 이제 표준 검증 수단. 유저전
   개선(=`unknown_map` 게이트 뒤 로직)은 이제 알려진 맵에도 항상 적용됨.
-- **로그 정책 (경량)**: 전 로그는 archive/logs_backup_*.tar.gz에 백업됨.
+- **로그 정책 (경량)**: 전 로그는 logs_backup_*.tar.gz에 백업됨.
   원본은 게이트 필수분(29_nypc_log/4, 30_nypc_log/7, 45_nypc_log)만 유지.
   새 평가는 분석 -> 백업 갱신 -> 원본 삭제 가능. 게이트 파일 3종만 불가침.
 - 큰 변경 묶음은 제출 전 **이중 감사** (적대 코드 감사 + 행동 정량 감사,
@@ -679,8 +679,8 @@ python3 tools/analyze_server_logs.py bots/<n>_nypc_log
 python3 tools/log_timeline.py <log> --every 40
 python3 tools/run_log_replay.py <log> --replay-side right --candidate <bot>
 python3 tools/evaluate_pool.py --bot <bot> --pools sample --start 1 --count 5 --side both
-python3 tools/analyze_user_eval.py bots/<n>_user_log  # 유저 로그: 대전ID·상대점수·
-  # 업셋패/아까운무/체급승 자동 정리 (요약 텍스트 파일 자동탐지 + 무제.txt 스타일
+python3 tools/analyze_user_eval.py bots/eval##_bot<n>_user_log  # 유저 로그: 대전ID·상대점수·
+  # 업셋패/아까운무/체급승 자동 정리 (summary.md/ranking_raw.txt 스타일
   # 파싱, 승패로 우리측 LEFT/RIGHT 역추론). 대전ID 중복 경고가 뜨면 파일명 공백
   # 손상 의심 -- 요약에서 빠진 ID로 수동 매칭.
 ```

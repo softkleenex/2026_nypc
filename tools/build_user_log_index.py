@@ -75,10 +75,7 @@ def pct_to_outcome(pct: float) -> str:
 
 
 def parse_eval_folder(folder: Path):
-    m = re.match(r"eval(\d+)_bot(.+?)_\d", folder.name)
-    if m:
-        return int(m.group(1)), f"bot{m.group(2)}"
-    m = re.match(r"eval(\d+)_bot(.+)", folder.name)
+    m = re.match(r"eval(\d+)_bot(.+?)(?:_user_log|_\d|$)", folder.name)
     if m:
         return int(m.group(1)), f"bot{m.group(2)}"
     return None, "unknown"
@@ -97,14 +94,28 @@ def build_rows(log_root: Path, results_dir: Path):
     replay = load_replay_rows(results_dir)
     rows = []
     for folder in sorted(log_root.glob("eval*_bot*")):
-        ranking = folder / "ranking.txt"
+        ranking = folder / "ranking_raw.txt"
+        if not ranking.exists():
+            ranking = folder / "ranking.txt"
         manifest = folder / "manifest.tsv"
-        if not ranking.exists() or not manifest.exists():
+        if not ranking.exists():
             continue
         eval_no_from_name, our_bot = parse_eval_folder(folder)
         meta, by_id, by_name = parse_ranking(ranking)
         eval_no = eval_no_from_name or meta["eval_no"]
-        for item in parse_manifest(manifest):
+        if manifest.exists():
+            items = parse_manifest(manifest)
+        else:
+            items = []
+            for log_path in sorted(folder.glob("[0-9]*_[AB].txt")):
+                match_id, side = log_path.stem.split("_", 1)
+                items.append({
+                    "file": log_path.name,
+                    "match_id": match_id,
+                    "side": side,
+                    "team": by_id.get(match_id, {}).get("opponent_team", ""),
+                })
+        for item in items:
             rel_file = item["file"]
             if not rel_file:
                 continue
@@ -275,7 +286,7 @@ def write_markdown(rows, path: Path):
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--log-root", type=Path, default=Path("bots/archive/user_logs"))
+    ap.add_argument("--log-root", type=Path, default=Path("bots"))
     ap.add_argument("--results-dir", type=Path, default=Path("results/log-replay"))
     ap.add_argument("--tsv", type=Path, default=Path("results/user-log-match-index.tsv"))
     ap.add_argument("--md", type=Path, default=Path("results/user-log-analysis.md"))
