@@ -66,7 +66,7 @@
 ## 이전 작업 메모 (2026-07-08 16:08 KST, eval29 반영)
 
 - **새 유저 로그 정형화:** `bots/145_user_log`의 중간평가 #29 로그를
-  현재는 `bots/eval29_bot145_user_log/` 표준 구조로 보존한다.
+  현재는 `bots/bot145_20260708_1500_user_log/` 표준 구조로 보존한다.
   `summary.md`, `ranking_raw.txt`, match log 20개가 있으며 원본은
   건드리지 않았다. 사이트 결과는 Tier 9, rating 1920, 469/914위,
   `9W/10L/1D`.
@@ -123,16 +123,15 @@
 - **유저 로그 인덱스:** 과거 eval14/25/26/28의 80경기를 상대 티어, 우리
   제출봇, 당시 결과, `145.py` replay 결과, 원본 로그 경로로 매칭했다.
   당시 산출물은 `results/user-log-match-index.tsv`, 생성 스크립트는
-  `tools/build_user_log_index.py`였다. 공개 요약은 현재 루트 `README.md`와
-  `docs/183-user-log-analysis.md`에 남긴다.
+  `tools/build_user_log_index.py`였다. 공개 요약은 현재 루트 `README.md`에
+  남긴다.
   현재 145 replay 기준 남은 non-win은 eval26 `thomas` 한 경기
   (`215364_A`, Tier 9, `DRAW TURN_LIMIT`)뿐이다.
 - **공식 로그 커버리지:** `30/45/60/61/62/76/77/78/91/125/143/145_nypc_log`
   전체 97게임을 `145.py`로 오른쪽 고정 재생했다. 원본 공식 로그는
   `87W/5L/5D`였지만 145 replay는 `97W/0L/0D`. 특히 원본 non-win 10개
   (`30`의 4/5/6/8, `45`의 6, `60`의 6, `76`의 3, `78`의 `211083`,
-  `125`의 8, `143`의 8)이 전부 승 분기로 바뀐다. 자세한 표는
-  `docs/official-log-coverage.md`.
+  `125`의 8, `143`의 8)이 전부 승 분기로 바뀐다.
 - **대기 중 실험 계획:** 당시 사전 가설은 ①proxy-rush의 T80~110 HQ패
   방어 공백, ②`215364_A`의 종반 우위 미전환 두 가지다. 새 실험은 실제
   중간평가 non-win이 이 패턴 중 하나와 맞을 때만 시작한다.
@@ -285,7 +284,7 @@
    구조. 현재 게이트 뒤: 올인 가드, chip 기본, T100 거북이->parity 분류,
    hq_race 예외, 호위 확장, 대칭 타이브레이크.
 3. **유저 중간평가 루프 (6시간 주기)**: 로그를
-   `bots/eval##_bot<n>_user_log/`에 저장한다. `ranking_raw.txt`는
+   `bots/bot<n>_<YYYYMMDD>_<HHMM>_user_log/`에 저장한다. `ranking_raw.txt`는
    레이팅/티어의 유일한 소스다. 분석
    순서: ① 진영별 승패 (RIGHT 편향 추적) ② 티어별 승패 (T5 업셋 패배가
    최대 레이팅 손실원) ③ 패배 게임 성장 커브 비교 (T50/100/150 시점
@@ -355,9 +354,9 @@ python3 tools/evaluate.py --bot "$CANDIDATE" \
 
 ## 로그 정책 (v3.2, 경량화 -- 마감 이틀 전 기준)
 
-전 로그는 `bots/logs_backup_*.tar.gz`에 백업됨. 원본은 운영
-필수분만 유지: 게이트용 `29_nypc_log/4.txt`·`30_nypc_log/7.txt`·
-`45_nypc_log/`. 새 평가 로그는 분석 후 백업 갱신하면 원본 삭제 가능.
+현재 정책은 원본 텍스트 로그를 직접 보존하고 중복 압축 백업은 만들지 않는다.
+운영 필수 로그는 게이트용 `29_nypc_log/4.txt`·`30_nypc_log/7.txt`·
+`45_nypc_log/`를 포함한다.
 
 ## (구) 로그 보호 규칙 (v3.1, 유실 사고 후 신설)
 
@@ -367,9 +366,8 @@ python3 tools/evaluate.py --bot "$CANDIDATE" \
 1. **정리 스크립트는 화이트리스트 방식만**: 삭제/이동할 파일명을 명시적으로
    나열한다. 글롭/디렉터리 순회로 지우지 않는다.
 2. `*_nypc_log/`, `*_user_log/`는 어떤 스크립트도 건드리지 않는다 (읽기 전용).
-3. **주기 백업**: 로그 폴더 전체를 `bots/logs_backup_<날짜>.tar.gz`로
-   압축 보관 (평가 데이터 추가 시마다). 현재: logs_backup_0706_0021.tar.gz.
-4. 유저 로그 저장 규약: 폴더 `bots/eval##_bot<봇번호>_user_log/`, 파일명
+3. **보존 방식**: 로그 폴더는 압축하지 않고 원본 텍스트 형태로 유지한다.
+4. 유저 로그 저장 규약: 폴더 `bots/bot<봇번호>_<YYYYMMDD>_<HHMM>_user_log/`, 파일명
    `<대전ID>_<A|B>.txt` (A=우리 LEFT), `summary.md`와 `ranking_raw.txt` 필수 포함.
 
 ## 검증 관행 (v3.1): 제출 전 이중 감사
@@ -388,7 +386,7 @@ python3 tools/evaluate.py --bot "$CANDIDATE" \
 bots/<best>.py          # 서버 최고 성적 봇 = 대표 답안 (삭제 금지)
 bots/<candidate>.py     # 현재 후보 (제출 중 + 준비 중, 1~2개)
 bots/<n>_nypc_log/      # 서버 로그 = 유일한 실측 데이터, 전부 보존
-eval##_bot*_user_log/   # 유저 평가 로그와 표준 summary
+bot*_*_user_log/        # 유저 평가 로그와 표준 summary
 results/                # 일회용. 현재 사이클 것만 남기고 주기적으로 비운다
 opponents/proxy.py      # 참고용 유지 (스모크/실험에 씀, 게이트 아님)
 ```

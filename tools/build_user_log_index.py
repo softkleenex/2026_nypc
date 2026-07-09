@@ -74,11 +74,13 @@ def pct_to_outcome(pct: float) -> str:
     return "D"
 
 
-def parse_eval_folder(folder: Path):
-    m = re.match(r"eval(\d+)_bot(.+?)(?:_user_log|_\d|$)", folder.name)
+def parse_log_folder(folder: Path):
+    m = re.match(r"bot(.+?)_(\d{8})_(\d{4})_user_log", folder.name)
     if m:
-        return int(m.group(1)), f"bot{m.group(2)}"
-    return None, "unknown"
+        date = m.group(2)
+        time = m.group(3)
+        return f"{date[:4]}-{date[4:6]}-{date[6:8]} {time[:2]}:{time[2:]}", f"bot{m.group(1)}"
+    return "", "unknown"
 
 
 def load_replay_rows(results_dir: Path):
@@ -93,16 +95,16 @@ def load_replay_rows(results_dir: Path):
 def build_rows(log_root: Path, results_dir: Path):
     replay = load_replay_rows(results_dir)
     rows = []
-    for folder in sorted(log_root.glob("eval*_bot*")):
+    for folder in sorted(log_root.glob("bot*_user_log")):
         ranking = folder / "ranking_raw.txt"
         if not ranking.exists():
             ranking = folder / "ranking.txt"
         manifest = folder / "manifest.tsv"
         if not ranking.exists():
             continue
-        eval_no_from_name, our_bot = parse_eval_folder(folder)
+        event_time, our_bot = parse_log_folder(folder)
         meta, by_id, by_name = parse_ranking(ranking)
-        eval_no = eval_no_from_name or meta["eval_no"]
+        eval_no = meta["eval_no"]
         if manifest.exists():
             items = parse_manifest(manifest)
         else:
@@ -151,6 +153,7 @@ def build_rows(log_root: Path, results_dir: Path):
                 rating_diff = meta["our_rating"] - int(opp["opponent_rating"])
             rows.append({
                 "eval_no": eval_no,
+                "event_time": event_time or meta["date"],
                 "eval_folder": folder.name,
                 "our_bot": our_bot,
                 "our_tier": meta["our_tier"],
@@ -197,7 +200,7 @@ def write_tsv(rows, path: Path):
     path.parent.mkdir(parents=True, exist_ok=True)
     fields = [
         "eval_no", "eval_folder", "our_bot", "our_tier", "our_rating", "our_rank",
-        "pool", "match_id", "source_log", "our_side", "opponent_id",
+        "event_time", "pool", "match_id", "source_log", "our_side", "opponent_id",
         "opponent_team", "opponent_tier", "opponent_rating", "rating_diff",
         "site_outcome", "archived_outcome", "archived_result", "archived_turn",
         "replay145_outcome", "replay145_result", "replay145_turn",
@@ -211,10 +214,10 @@ def write_tsv(rows, path: Path):
 
 def write_markdown(rows, path: Path):
     path.parent.mkdir(parents=True, exist_ok=True)
-    by_eval = defaultdict(list)
+    by_event = defaultdict(list)
     by_tier = defaultdict(list)
     for row in rows:
-        by_eval[row["eval_no"]].append(row)
+        by_event[(row["event_time"], row["eval_folder"])].append(row)
         by_tier[row["opponent_tier"]].append(row)
 
     lines = [
@@ -222,18 +225,18 @@ def write_markdown(rows, path: Path):
         "",
         "Archived user-evaluation logs matched by opponent tier, submitted bot, result, and log path.",
         "",
-        "## Evaluation Summary",
+        "## User Evaluation Summary",
         "",
-        "| Eval | Our bot | Rank | Rating | Archived W/L/D | 145 replay W/L/D |",
-        "|---:|---|---:|---:|---:|---:|",
+        "| Time | Our bot | Rank | Rating | Archived W/L/D | 145 replay W/L/D |",
+        "|---|---|---:|---:|---:|---:|",
     ]
-    for eval_no in sorted(by_eval):
-        group = by_eval[eval_no]
+    for event_key in sorted(by_event):
+        group = by_event[event_key]
         first = group[0]
         aw, al, ad = wld(group, "site_outcome")
         rw, rl, rd = wld(group, "replay145_outcome")
         lines.append(
-            f"| {eval_no} | {first['our_bot']} | {first['our_rank']}/{first['pool']} | "
+            f"| {first['event_time']} | {first['our_bot']} | {first['our_rank']}/{first['pool']} | "
             f"{first['our_rating']} | {aw}/{al}/{ad} | {rw}/{rl}/{rd} |"
         )
 
@@ -255,12 +258,12 @@ def write_markdown(rows, path: Path):
         "",
         "## Remaining 145 Replay Risks",
         "",
-        "| Eval | Opponent | Tier | Rating | 145 result | Turn | Log |",
-        "|---:|---|---:|---:|---|---:|---|",
+        "| Time | Opponent | Tier | Rating | 145 result | Turn | Log |",
+        "|---|---|---:|---:|---|---:|---|",
     ]
-    for row in sorted(remaining, key=lambda r: (r["eval_no"], r["source_log"])):
+    for row in sorted(remaining, key=lambda r: (r["event_time"], r["source_log"])):
         lines.append(
-            f"| {row['eval_no']} | {row['opponent_team']} | {row['opponent_tier']} | "
+            f"| {row['event_time']} | {row['opponent_team']} | {row['opponent_tier']} | "
             f"{row['opponent_rating']} | {row['replay145_result']} | "
             f"{row['replay145_turn']} | `{row['log_path']}` |"
         )
@@ -272,12 +275,12 @@ def write_markdown(rows, path: Path):
         "",
         "## Previously Bad Results Fixed By 145 Replay",
         "",
-        "| Eval | Opponent | Tier | Archived | 145 result | Log |",
-        "|---:|---|---:|---|---|---|",
+        "| Time | Opponent | Tier | Archived | 145 result | Log |",
+        "|---|---|---:|---|---|---|",
     ]
-    for row in sorted(fixed, key=lambda r: (r["eval_no"], r["opponent_tier"], r["opponent_rating"])):
+    for row in sorted(fixed, key=lambda r: (r["event_time"], r["opponent_tier"], r["opponent_rating"])):
         lines.append(
-            f"| {row['eval_no']} | {row['opponent_team']} | {row['opponent_tier']} | "
+            f"| {row['event_time']} | {row['opponent_team']} | {row['opponent_tier']} | "
             f"{row['archived_result']} | {row['replay145_result']} | `{row['log_path']}` |"
         )
 
