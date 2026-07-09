@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="460" viewBox="0 0 1180 460" role="img" aria-labelledby="title desc">
+  <title id="title">User Evaluation Rank / Pool</title>
+  <desc id="desc">Rank divided by total evaluation pool size by submitted bot label. Lower is better.</desc>
+  <rect width="1180" height="460" fill="#ffffff"/>
+  <style>
+    .title{font:700 24px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}
+    .axis{stroke:#111827;stroke-width:2}
+    .grid{stroke:#d1d5db;stroke-width:1.2}
+    .tick{font:600 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#374151}
+    .label{font:700 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}
+    .line{fill:none;stroke:#b91c1c;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+    .point{fill:#ffffff;stroke:#b91c1c;stroke-width:4}
+  </style>
+  <text x="80" y="28" class="title">User Evaluation Rank / Pool %</text>
+  <line x1="80" y1="330" x2="1150" y2="330" class="axis"/>
+  <line x1="80" y1="40" x2="80" y2="330" class="axis"/>
+  <g>
+    <line x1="80" y1="330" x2="1150" y2="330" class="grid"/><text x="44" y="335" class="tick">0</text>
+    <line x1="80" y1="288.6" x2="1150" y2="288.6" class="grid"/><text x="36" y="293.6" class="tick">10</text>
+    <line x1="80" y1="247.1" x2="1150" y2="247.1" class="grid"/><text x="36" y="252.1" class="tick">20</text>
+    <line x1="80" y1="205.7" x2="1150" y2="205.7" class="grid"/><text x="36" y="210.7" class="tick">30</text>
+    <line x1="80" y1="164.3" x2="1150" y2="164.3" class="grid"/><text x="36" y="169.3" class="tick">40</text>
+    <line x1="80" y1="122.9" x2="1150" y2="122.9" class="grid"/><text x="36" y="127.9" class="tick">50</text>
+    <line x1="80" y1="81.4" x2="1150" y2="81.4" class="grid"/><text x="36" y="86.4" class="tick">60</text>
+    <line x1="80" y1="40" x2="1150" y2="40" class="grid"/><text x="36" y="45" class="tick">70</text>
+  </g>
+  <polyline class="line" points="80,225.6 156.4,183.8 232.9,124.9 309.3,128.2 385.7,149.8 462.1,134 538.6,131.6 615,229.7 691.4,197.8 767.9,204.1 844.3,209 920.7,134 997.1,164.7 1073.6,117.5 1150,74"/>
+  <g>
+    <circle class="point" cx="80" cy="225.6" r="5"/><circle class="point" cx="156.4" cy="183.8" r="5"/>
+    <circle class="point" cx="232.9" cy="124.9" r="5"/><circle class="point" cx="309.3" cy="128.2" r="5"/>
+    <circle class="point" cx="385.7" cy="149.8" r="5"/><circle class="point" cx="462.1" cy="134" r="5"/>
+    <circle class="point" cx="538.6" cy="131.6" r="5"/><circle class="point" cx="615" cy="229.7" r="5"/>
+    <circle class="point" cx="691.4" cy="197.8" r="5"/><circle class="point" cx="767.9" cy="204.1" r="5"/>
+    <circle class="point" cx="844.3" cy="209" r="5"/><circle class="point" cx="920.7" cy="134" r="5"/>
+    <circle class="point" cx="997.1" cy="164.7" r="5"/><circle class="point" cx="1073.6" cy="117.5" r="5"/>
+    <circle class="point" cx="1150" cy="74" r="5"/>
+  </g>
+  <text x="930" y="58" class="tick">lower is better</text>
+  <g class="label">
+    <text x="80" y="358" transform="rotate(45 80 358)">43</text>
+    <text x="156.4" y="358" transform="rotate(45 156.4 358)">46_1</text>
+    <text x="232.9" y="358" transform="rotate(45 232.9 358)">46_2</text>
+    <text x="309.3" y="358" transform="rotate(45 309.3 358)">47_1</text>
+    <text x="385.7" y="358" transform="rotate(45 385.7 358)">47_2</text>
+    <text x="462.1" y="358" transform="rotate(45 462.1 358)">47_3</text>
+    <text x="538.6" y="358" transform="rotate(45 538.6 358)">47_4</text>
+    <text x="615" y="358" transform="rotate(45 615 358)">50</text>
+    <text x="691.4" y="358" transform="rotate(45 691.4 358)">55</text>
+    <text x="767.9" y="358" transform="rotate(45 767.9 358)">62</text>
+    <text x="844.3" y="358" transform="rotate(45 844.3 358)">77</text>
+    <text x="920.7" y="358" transform="rotate(45 920.7 358)">91_1</text>
+    <text x="997.1" y="358" transform="rotate(45 997.1 358)">91_2</text>
+    <text x="1073.6" y="358" transform="rotate(45 1073.6 358)">145</text>
+    <text x="1150" y="358" transform="rotate(45 1150 358)">183</text>
+  </g>
+  <text x="568" y="445" class="label">Bot label</text>
+</svg>

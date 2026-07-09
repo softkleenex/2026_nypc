@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="460" viewBox="0 0 1180 460" role="img" aria-labelledby="title desc">
+  <title id="title">User Evaluation Rating</title>
+  <desc id="desc">Rating by submitted bot label from bot 43 through bot 183.</desc>
+  <rect width="1180" height="460" fill="#ffffff"/>
+  <style>
+    .title{font:700 24px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}
+    .axis{stroke:#111827;stroke-width:2}
+    .grid{stroke:#d1d5db;stroke-width:1.2}
+    .tick{font:600 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#374151}
+    .label{font:700 13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}
+    .line{fill:none;stroke:#1d4ed8;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+    .point{fill:#ffffff;stroke:#1d4ed8;stroke-width:4}
+  </style>
+  <text x="80" y="28" class="title">User Evaluation Rating</text>
+  <line x1="80" y1="330" x2="1150" y2="330" class="axis"/>
+  <line x1="80" y1="40" x2="80" y2="330" class="axis"/>
+  <g>
+    <line x1="80" y1="330" x2="1150" y2="330" class="grid"/><text x="44" y="335" class="tick">0</text>
+    <line x1="80" y1="272" x2="1150" y2="272" class="grid"/><text x="30" y="277" class="tick">500</text>
+    <line x1="80" y1="214" x2="1150" y2="214" class="grid"/><text x="22" y="219" class="tick">1000</text>
+    <line x1="80" y1="156" x2="1150" y2="156" class="grid"/><text x="22" y="161" class="tick">1500</text>
+    <line x1="80" y1="98" x2="1150" y2="98" class="grid"/><text x="22" y="103" class="tick">2000</text>
+    <line x1="80" y1="40" x2="1150" y2="40" class="grid"/><text x="22" y="45" class="tick">2500</text>
+  </g>
+  <polyline class="line" points="80,123.5 156.4,99.2 232.9,108.4 309.3,118.9 385.7,118.9 462.1,124.7 538.6,124.7 615,103.8 691.4,110.8 767.9,100.3 844.3,108.4 920.7,103.8 997.1,111.9 1073.6,107.3 1150,131.6"/>
+  <g>
+    <circle class="point" cx="80" cy="123.5" r="5"/><circle class="point" cx="156.4" cy="99.2" r="5"/>
+    <circle class="point" cx="232.9" cy="108.4" r="5"/><circle class="point" cx="309.3" cy="118.9" r="5"/>
+    <circle class="point" cx="385.7" cy="118.9" r="5"/><circle class="point" cx="462.1" cy="124.7" r="5"/>
+    <circle class="point" cx="538.6" cy="124.7" r="5"/><circle class="point" cx="615" cy="103.8" r="5"/>
+    <circle class="point" cx="691.4" cy="110.8" r="5"/><circle class="point" cx="767.9" cy="100.3" r="5"/>
+    <circle class="point" cx="844.3" cy="108.4" r="5"/><circle class="point" cx="920.7" cy="103.8" r="5"/>
+    <circle class="point" cx="997.1" cy="111.9" r="5"/><circle class="point" cx="1073.6" cy="107.3" r="5"/>
+    <circle class="point" cx="1150" cy="131.6" r="5"/>
+  </g>
+  <g class="label">
+    <text x="80" y="358" transform="rotate(45 80 358)">43</text>
+    <text x="156.4" y="358" transform="rotate(45 156.4 358)">46_1</text>
+    <text x="232.9" y="358" transform="rotate(45 232.9 358)">46_2</text>
+    <text x="309.3" y="358" transform="rotate(45 309.3 358)">47_1</text>
+    <text x="385.7" y="358" transform="rotate(45 385.7 358)">47_2</text>
+    <text x="462.1" y="358" transform="rotate(45 462.1 358)">47_3</text>
+    <text x="538.6" y="358" transform="rotate(45 538.6 358)">47_4</text>
+    <text x="615" y="358" transform="rotate(45 615 358)">50</text>
+    <text x="691.4" y="358" transform="rotate(45 691.4 358)">55</text>
+    <text x="767.9" y="358" transform="rotate(45 767.9 358)">62</text>
+    <text x="844.3" y="358" transform="rotate(45 844.3 358)">77</text>
+    <text x="920.7" y="358" transform="rotate(45 920.7 358)">91_1</text>
+    <text x="997.1" y="358" transform="rotate(45 997.1 358)">91_2</text>
+    <text x="1073.6" y="358" transform="rotate(45 1073.6 358)">145</text>
+    <text x="1150" y="358" transform="rotate(45 1150 358)">183</text>
+  </g>
+  <text x="568" y="445" class="label">Bot label</text>
+</svg>
