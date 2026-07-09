@@ -13,7 +13,7 @@ NYPC 2026 Code Battle 예선 게임 `NEXT NATION`을 준비하며 만든 봇 개
 ## 빠른 시작
 
 - 대회와 게임 규칙은 `docs/nypc-overview-rules.md`에서 확인합니다.
-- 제출 봇과 로그 보관 규칙은 `bots/README.md`와 `docs/bots-organization.md`에 정리했습니다.
+- 제출 봇과 로그 보관 규칙은 `bots/README.md`에 정리했습니다.
 - 봇 개발 흐름과 전략 기록은 `docs/workflow-strategy.md`가 기준입니다.
 - 에이전트/기여자 작업 지침은 루트 `AGENTS.md`를 기준으로 봅니다.
 
@@ -21,6 +21,15 @@ NYPC 2026 Code Battle 예선 게임 `NEXT NATION`을 준비하며 만든 봇 개
 python3 -m py_compile bots/<n>.py tools/*.py
 python3 tools/evaluate_pool.py --bot bots/<n>.py --start 1 --count 5 --side both --pools sample --name <n>-sample-smoke
 ```
+
+---
+
+## 문서 지도
+
+- `docs/nypc-overview-rules.md`: 공식 개요와 `NEXT NATION` 규칙 원문 통합본입니다.
+- `docs/workflow-strategy.md`: 봇 후보별 실험, 기각 사유, 검증 루프를 남긴 작업 로그입니다.
+- `docs/official-log-coverage.md`: 145 제출 시점의 공식 봇 로그 커버리지 메모입니다.
+- `docs/183-user-log-analysis.md`: 최종 제출 `183`의 유저 상대 실패 원인과 후속 과제입니다.
 
 ---
 

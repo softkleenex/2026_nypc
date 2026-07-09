@@ -1,6 +1,6 @@
 # NYPC Agent Context
 
-이 문서는 기존 루트 `AGENTS.md`와 `CLAUDE.md`를 하나로 묶은 단일 작업 지침이다. 원본 두 파일은 `docs/archive/`에 보존했고, 아래 원문 영역에도 그대로 포함했다.
+이 문서는 기존 루트 `AGENTS.md`와 `CLAUDE.md`를 하나로 묶은 단일 작업 지침이다. 원문 내용은 아래 영역에 그대로 포함했다.
 
 ## 읽기 순서
 
@@ -10,9 +10,9 @@
 
 ## 보존 원칙
 
-원본 문서의 내용은 축약하지 않았다. 통합 검사는 `docs/integration-check.md`에 기록했다.
+원본 문서의 내용은 축약하지 않았다. 별도 통합 검사 문서는 공개 정리 과정에서 제거했고, 이 파일 자체를 보존본으로 사용한다.
 
-## Source: `docs/archive/AGENTS.before-agent-merge.md`
+## Source: former `AGENTS.md`
 
 > 통합 대상 원문: Codex/기여자 가이드. 아래 내용은 원본을 그대로 포함한다.
 
@@ -55,7 +55,7 @@ This workspace root has no Git history, so no project commit convention is detec
 
 Do not delete or rewrite `*_nypc_log/`, `*_user_log*/`, or `bots/archive/` data. Treat `results/` as disposable only after conclusions are recorded in `strategy-plan.md`.
 
-## Source: `docs/archive/CLAUDE.before-agent-merge.md`
+## Source: former `CLAUDE.md`
 
 > 통합 대상 원문: Claude 프로젝트 컨텍스트. 아래 내용은 원본을 그대로 포함한다.
 

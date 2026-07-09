@@ -1,6 +1,6 @@
 # NYPC Workflow and Strategy
 
-이 문서는 기존 `docs/workflow.md`와 `strategy-plan.md`를 하나로 묶은 운영 문서다. 원본은 `docs/archive/`로 이동했고, 개발 루프와 누적 전략 기록은 이 문서를 기준으로 확인한다.
+이 문서는 기존 `docs/workflow.md`와 `strategy-plan.md`를 하나로 묶은 운영 문서다. 원문 내용은 아래 영역에 그대로 포함했고, 개발 루프와 누적 전략 기록은 이 문서를 기준으로 확인한다.
 
 ## 읽기 순서
 
@@ -10,7 +10,7 @@
 
 ## 보존 원칙
 
-서버 A/B 로그와 유저 로그는 유일한 실측 데이터다. 이 통합본은 원문을 그대로 포함하며, 누락 검사는 `docs/integration-check.md`에 기록했다.
+서버 A/B 로그와 유저 로그는 유일한 실측 데이터다. 이 통합본은 원문을 그대로 포함하며, 별도 통합 검사 문서는 공개 정리 과정에서 제거했다.
 
 ## 최신 작업 메모 (2026-07-08 19:50 KST, 183 후보)
 
@@ -122,8 +122,9 @@
   중간평가 유저 결과 로그가 들어온 뒤 그 손실/무승부만 좁게 공략한다.
 - **유저 로그 인덱스:** 과거 eval14/25/26/28의 80경기를 상대 티어, 우리
   제출봇, 당시 결과, `145.py` replay 결과, 원본 로그 경로로 매칭했다.
-  산출물은 `results/user-log-match-index.tsv`, 요약은
-  `docs/user-log-analysis.md`, 생성 스크립트는 `tools/build_user_log_index.py`.
+  당시 산출물은 `results/user-log-match-index.tsv`, 생성 스크립트는
+  `tools/build_user_log_index.py`였다. 공개 요약은 현재 루트 `README.md`와
+  `docs/183-user-log-analysis.md`에 남긴다.
   현재 145 replay 기준 남은 non-win은 eval26 `thomas` 한 경기
   (`215364_A`, Tier 9, `DRAW TURN_LIMIT`)뿐이다.
 - **공식 로그 커버리지:** `30/45/60/61/62/76/77/78/91/125/143/145_nypc_log`
@@ -132,8 +133,7 @@
   (`30`의 4/5/6/8, `45`의 6, `60`의 6, `76`의 3, `78`의 `211083`,
   `125`의 8, `143`의 8)이 전부 승 분기로 바뀐다. 자세한 표는
   `docs/official-log-coverage.md`.
-- **대기 중 실험 계획:** 새 중간평가 로그가 들어오면 `docs/pending-experiment-plan.md`
-  순서대로 분류한다. 현재 사전 가설은 ①proxy-rush의 T80~110 HQ패
+- **대기 중 실험 계획:** 당시 사전 가설은 ①proxy-rush의 T80~110 HQ패
   방어 공백, ②`215364_A`의 종반 우위 미전환 두 가지다. 새 실험은 실제
   중간평가 non-win이 이 패턴 중 하나와 맞을 때만 시작한다.
 
@@ -262,7 +262,7 @@
 - **판정:** 실전 유저 로그 1건을 추가로 건드리는 좁은 후보. replay-WA는
   확정 승리 증거가 아니므로 서버/유저 중간평가로 최종 확인해야 한다.
 
-## Source: `docs/archive/workflow.before-workflow-merge.md`
+## Source: former `docs/workflow.md`
 
 > 통합 대상 원문: 작업 워크플로우. 아래 내용은 원본을 그대로 포함한다.
 
@@ -424,7 +424,7 @@ python3 tools/extract_log_features.py bots/<n>_nypc_log  # feature 추출
 오는 형식을 과거에 누락했던 적 있다 (수정됨). 수치가 직관과 어긋나면
 도구 버그부터 의심한다.
 
-## Source: `docs/archive/strategy-plan.before-workflow-merge.md`
+## Source: former `strategy-plan.md`
 
 > 통합 대상 원문: 전략 계획. 아래 내용은 원본을 그대로 포함한다.
 

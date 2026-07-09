@@ -278,7 +278,7 @@ def main() -> None:
     ap.add_argument("--log-root", type=Path, default=Path("bots/archive/user_logs"))
     ap.add_argument("--results-dir", type=Path, default=Path("results/log-replay"))
     ap.add_argument("--tsv", type=Path, default=Path("results/user-log-match-index.tsv"))
-    ap.add_argument("--md", type=Path, default=Path("docs/user-log-analysis.md"))
+    ap.add_argument("--md", type=Path, default=Path("results/user-log-analysis.md"))
     args = ap.parse_args()
 
     rows = build_rows(args.log_root, args.results_dir)
