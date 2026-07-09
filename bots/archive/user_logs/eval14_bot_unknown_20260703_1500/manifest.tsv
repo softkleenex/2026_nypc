@@ -1,0 +1,21 @@
+eval	match_id	side	file	original_file	team	outcome	result
+eval14_bot_unknown_20260703_1500	eval14_01	A	matches/eval14_01_A.txt	CanThisBugBeTranslated .txt	CanThisBugBeTranslated 	승	RESULT LEFT_WIN HQ_DESTROYED
+eval14_bot_unknown_20260703_1500	eval14_02	A	matches/eval14_02_A.txt	Everett.txt	Everett	승	RESULT LEFT_WIN HQ_DESTROYED
+eval14_bot_unknown_20260703_1500	eval14_03	A	matches/eval14_03_A.txt	LacHongFighting.txt	LacHongFighting	무	RESULT DRAW TURN_LIMIT
+eval14_bot_unknown_20260703_1500	eval14_04	B	matches/eval14_04_B.txt	Manhattan Project.txt	Manhattan Project	승	RESULT RIGHT_WIN HQ_DESTROYED
+eval14_bot_unknown_20260703_1500	eval14_05	A	matches/eval14_05_A.txt	눈 오는 날.txt	눈 오는 날	승	RESULT LEFT_WIN TURN_LIMIT
+eval14_bot_unknown_20260703_1500	eval14_06	A	matches/eval14_06_A.txt	던힐보단붐힐.txt	던힐보단붐힐	패	RESULT RIGHT_WIN TURN_LIMIT
+eval14_bot_unknown_20260703_1500	eval14_07	B	matches/eval14_07_B.txt	따뜻한밥상.txt	따뜻한밥상	패	RESULT LEFT_WIN HQ_DESTROYED
+eval14_bot_unknown_20260703_1500	eval14_08	A	matches/eval14_08_A.txt	라스트_인공.txt	라스트_인공	패	RESULT RIGHT_WIN TURN_LIMIT
+eval14_bot_unknown_20260703_1500	eval14_09	A	matches/eval14_09_A.txt	망상감상대상연맹.txt	망상감상대상연맹	무	RESULT DRAW TURN_LIMIT
+eval14_bot_unknown_20260703_1500	eval14_10	A	matches/eval14_10_A.txt	맥북수령최후의1인.txt	맥북수령최후의1인	승	RESULT LEFT_WIN HQ_DESTROYED
+eval14_bot_unknown_20260703_1500	eval14_11	A	matches/eval14_11_A.txt	맹꽁.txt	맹꽁	무	RESULT DRAW TURN_LIMIT
+eval14_bot_unknown_20260703_1500	eval14_12	A	matches/eval14_12_A.txt	모노.txt	모노	패	RESULT RIGHT_WIN HQ_DESTROYED
+eval14_bot_unknown_20260703_1500	eval14_13	A	matches/eval14_13_A.txt	부가세.txt	부가세	승	RESULT LEFT_WIN TURN_LIMIT
+eval14_bot_unknown_20260703_1500	eval14_14	A	matches/eval14_14_A.txt	상금먹고튀어.txt	상금먹고튀어	승	RESULT LEFT_WIN TURN_LIMIT
+eval14_bot_unknown_20260703_1500	eval14_15	A	matches/eval14_15_A.txt	어 나혼자야.txt	어 나혼자야	패	RESULT RIGHT_WIN HQ_DESTROYED
+eval14_bot_unknown_20260703_1500	eval14_16	A	matches/eval14_16_A.txt	언도.txt	언도	패	RESULT RIGHT_WIN TURN_LIMIT
+eval14_bot_unknown_20260703_1500	eval14_17	A	matches/eval14_17_A.txt	일단제출.txt	일단제출	패	RESULT RIGHT_WIN TURN_LIMIT
+eval14_bot_unknown_20260703_1500	eval14_18	A	matches/eval14_18_A.txt	코딩쟁이들.txt	코딩쟁이들	승	RESULT LEFT_WIN TURN_LIMIT
+eval14_bot_unknown_20260703_1500	eval14_19	A	matches/eval14_19_A.txt	크로스핏.txt	크로스핏	승	RESULT LEFT_WIN HQ_DESTROYED
+eval14_bot_unknown_20260703_1500	eval14_20	A	matches/eval14_20_A.txt	😏.txt	😏	패	RESULT RIGHT_WIN TURN_LIMIT

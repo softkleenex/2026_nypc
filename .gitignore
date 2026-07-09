@@ -1,0 +1,15 @@
+.DS_Store
+**/.DS_Store
+__pycache__/
+**/__pycache__/
+*.py[cod]
+
+# Local editor / agent state
+.claude/
+.obsidian/
+
+# Generated evaluation output. Conclusions are recorded in docs/.
+results/
+
+# Redundant compressed backups of logs already stored as text.
+bots/archive/*.tar.gz
