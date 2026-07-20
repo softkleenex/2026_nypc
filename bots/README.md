@@ -28,7 +28,7 @@ bot<n>_<YYYYMMDD>_<HHMM>_user_log/ 정형화한 중간평가/유저 상대 로�
 
 각 유저 로그 폴더는 `summary.md`, `ranking_raw.txt`, `<대전ID>_<A|B>.txt` 파일을 둔다. `A`는 우리가 LEFT였다는 뜻이고, `B`는 우리가 RIGHT였다는 뜻이다.
 
-현재 루트에 보관된 유저 로그는 `bot43_20260703_2100_user_log/`부터 `bot183_20260708_2100_user_log/`까지다. `20260705_2100`의 bot 47 로그는 랭킹 요약만 남아 있다.
+현재 표준 폴더에 보관된 유저 로그는 `bot43_20260703_2100_user_log/`부터 `bot183_20260708_2100_user_log/`까지이며, 각 평가는 match log 20개를 포함한다.
 
 ## Storage Rules
 

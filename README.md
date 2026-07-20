@@ -6,6 +6,7 @@ NYPC 2026 Code Battle 예선 게임 `NEXT NATION`을 준비하며 만든 봇 개
 - Team: `softkleenex.`
 - Final submitted bot: `bots/183.py`
 - Final submitted data file: `bots/183_data.bin`
+- Retrospective: [`REPORT.md`](REPORT.md)
 
 ---
 
@@ -27,6 +28,8 @@ python3 tools/evaluate_pool.py --bot bots/<n>.py --start 1 --count 5 --side both
 
 - `docs/nypc-overview-rules.md`: 공식 개요와 `NEXT NATION` 규칙 원문 통합본입니다.
 - `docs/workflow-strategy.md`: 봇 후보별 실험, 기각 사유, 검증 루프를 남긴 작업 로그입니다.
+- `REPORT.md`: 목표, 문제 해결 과정, 실패 원인과 다음 대회 개선안을 정리한 회고입니다.
+- `docs/README.md`: 문서별 역할과 보존 위치를 설명하는 문서 지도입니다.
 
 ---
 
