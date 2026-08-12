@@ -13,3 +13,7 @@ results/
 
 # Redundant compressed backups of logs already stored as text.
 bots/*.tar.gz
+
+# 봇 대전 시뮬레이션 로그 (재생성 가능, 대량)
+bots/*_log/
+bots/*.txt
