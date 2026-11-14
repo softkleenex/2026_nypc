@@ -1,5 +1,7 @@
 # 2026_nypc
 
+회고: [2026 NYPC 회고록](https://softkleenex.github.io/posts/2026-nypc-retrospective/)
+
 NYPC 2026 Code Battle 예선 게임 `NEXT NATION`을 준비하며 만든 봇 개발
 워크스페이스입니다.
 
